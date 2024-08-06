@@ -17,6 +17,6 @@ app.use('/', book_routes)
 
 
 app.listen(8000, () => {
-    mongoose.connect('mongodb://localhost:27017/books-collection')
+    mongoose.connect('mongodb://localhost:27017/practice-mongo')
     console.log("server started at http://localhost:8000/")
 })

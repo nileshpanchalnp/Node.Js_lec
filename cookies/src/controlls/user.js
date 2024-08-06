@@ -1,5 +1,4 @@
 const {User} = require('../models/user')
-
 const registration = async (req,res)=>{
 
      req_body= req.body;
@@ -38,7 +37,7 @@ const loginUser = async (req,res)=>{
 
 const getUser = async (res,req)=>{
     const users = await  User.find()
-    res.json({"user":user})
+    res.json({"user":users})
 }
 
 module.exports = {registration,loginUser,getUser}
