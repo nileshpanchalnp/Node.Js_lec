@@ -4,7 +4,7 @@ const getMovie = async (req,res)=>{
     try{
         const data = await Movie.find()
         res.json({
-            data:data
+            Movielist:data
         })
     }catch(error){
         res.json({
@@ -42,4 +42,44 @@ const createMovie = async (req,res)=>{
     }
 }
 
-module.exports = {getMovie,createMovie}
+const deleteMovie = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        await Movie.findByIdAndDelete(id);
+
+        res.json({
+            msg: "Data deleted successfully"
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
+        });
+    }
+};
+
+const updateMovie = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const updateData = req.body;
+
+        const updatedMovie = await Book.findByIdAndUpdate(id, updateData, { new: true });
+
+        if (!updatedMovie) {
+            return res.status(404).json({
+                msg: "movie not found"
+            });
+        }
+
+        res.json({
+            msg: "movie updated successfully",
+            data: updatedMovie
+        });
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
+        });
+    }
+};
+
+module.exports = {getMovie,createMovie,deleteMovie,updateMovie}
