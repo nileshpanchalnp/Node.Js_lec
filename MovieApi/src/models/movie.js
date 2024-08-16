@@ -25,6 +25,7 @@ const movie_schema = new mongoose.Schema({
         type:Number,
         require:true,
     },
+    poster:String
 })
 
 const Movie = mongoose.model('movie',movie_schema)
